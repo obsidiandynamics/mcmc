@@ -30,24 +30,21 @@ impl<R: Rand> Sampler<R> {
 
     #[inline(always)]
     pub fn next(&mut self) -> f64 {
-        loop {
-            let next = random_f64(&mut self.config.rand) * self.span + self.config.range.start();
-            let prob_next = gaussian::pdf(self.config.mean, self.config.stdev, next);
-            //println!("current: {:.3}, prob_current: {:.3}, next: {next:.3}, prob_next: {prob_next:.3}", self.current, self.prob_current);
-            if prob_next >= self.prob_current {
+        let next = random_f64(&mut self.config.rand) * self.span + self.config.range.start();
+        let prob_next = gaussian::pdf(self.config.mean, self.config.stdev, next);
+        //println!("current: {:.3}, prob_current: {:.3}, next: {next:.3}, prob_next: {prob_next:.3}", self.current, self.prob_current);
+        if prob_next >= self.prob_current {
+            self.current = next;
+            self.prob_current = prob_next;
+        } else {
+            let threshold = prob_next / self.prob_current;
+            let rand = random_f64(&mut self.config.rand);
+            if rand < threshold {
                 self.current = next;
                 self.prob_current = prob_next;
-                return self.current;
-            } else {
-                let threshold = prob_next / self.prob_current;
-                let rand = random_f64(&mut self.config.rand);
-                if rand < threshold {
-                    self.current = next;
-                    self.prob_current = prob_next;
-                    return self.current;
-                }
             }
         }
+        self.current
     }
 }
 
