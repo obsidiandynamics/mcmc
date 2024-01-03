@@ -1,2 +1,3 @@
-# mcmc
-Markov Chain Monte Carlo
+# `mcmc`
+===
+Markov chain Monte Carlo sampling.
