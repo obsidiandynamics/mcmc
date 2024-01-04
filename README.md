@@ -6,7 +6,7 @@ Markov chain Monte Carlo sampling using the _Independence Metropolis-Hastings_ a
 [![docs.rs](https://img.shields.io/badge/docs.rs-metromc-blue?style=flat-square&logo=docs.rs)](https://docs.rs/metromc)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/obsidiandynamics/metromc/master.yml?branch=master&style=flat-square&logo=github)](https://github.com/obsidiandynamics/metromc/actions/workflows/master.yml)
 
-Uses the [tinyrand](https://github.com/obsidiandynamics/tinyrand) RNG to sample at rate of ~50M samples/sec.
+Uses the [tinyrand](https://github.com/obsidiandynamics/tinyrand) RNG to sample at a rate of ~50M samples/sec.
 
 # Example
 Draw samples from the Gaussian distribution.

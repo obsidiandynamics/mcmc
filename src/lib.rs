@@ -1,5 +1,7 @@
+pub mod beta;
 pub mod gamma;
 pub mod gaussian;
+pub mod pareto;
 pub mod sampler;
 
 pub trait Pdf {
