@@ -28,7 +28,7 @@ impl<R: Rand, P: Pdf> Sampler<R, P> {
     }
 
     #[inline(always)]
-    pub fn next(&mut self) -> f64 {
+    pub fn next_sample(&mut self) -> f64 {
         let next = random_f64(&mut self.config.rand) * self.span + self.config.range.start();
         let prob_next = self.config.dist.prob(next);
         //println!("current: {:.3}, prob_current: {:.3}, next: {next:.3}, prob_next: {prob_next:.3}", self.current, self.prob_current);
@@ -52,7 +52,7 @@ impl<R: Rand, P: Pdf> Iterator for Sampler<R, P> {
 
     #[inline(always)]
     fn next(&mut self) -> Option<Self::Item> {
-        Some(self.next())
+        Some(self.next_sample())
     }
 }
 

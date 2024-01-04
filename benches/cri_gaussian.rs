@@ -18,10 +18,10 @@ fn criterion_benchmark(c: &mut Criterion) {
     });
 
     // sanity check
-    assert!(RANGE.contains(&sampler.next()));
+    assert!(RANGE.contains(&sampler.next_sample()));
 
     c.bench_function("cri_gaussian", |b| {
-        b.iter(|| sampler.next());
+        b.iter(|| sampler.next_sample());
     });
 }
 
