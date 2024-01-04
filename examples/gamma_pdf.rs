@@ -1,5 +1,5 @@
-use mcmc::gamma::Gamma;
-use mcmc::Pdf;
+use metromc::gamma::Gamma;
+use metromc::Pdf;
 
 fn main() {
     const SHAPE: f64 = 2.0;

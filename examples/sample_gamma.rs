@@ -2,8 +2,8 @@ use std::ops::RangeInclusive;
 
 use tinyrand::Wyrand;
 
-use mcmc::gamma::Gamma;
-use mcmc::sampler::{Config, Sampler};
+use metromc::gamma::Gamma;
+use metromc::sampler::{Config, Sampler};
 
 fn main() {
     const SHAPE: f64 = 2.0;

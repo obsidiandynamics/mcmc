@@ -1,7 +1,7 @@
 use std::ops::RangeInclusive;
 use tinyrand::Wyrand;
-use mcmc::gaussian::Gaussian;
-use mcmc::sampler::{Config, Sampler};
+use metromc::gaussian::Gaussian;
+use metromc::sampler::{Config, Sampler};
 
 fn main() {
     const MEAN: f64 = 0.0;

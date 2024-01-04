@@ -1,5 +1,5 @@
-use mcmc::Pdf;
-use mcmc::gaussian::Gaussian;
+use metromc::Pdf;
+use metromc::gaussian::Gaussian;
 
 fn main() {
     const MEAN: f64 = 3.0;
