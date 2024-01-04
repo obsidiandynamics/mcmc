@@ -26,7 +26,7 @@ use tinyrand::Wyrand;
 use metromc::gaussian::Gaussian;
 use metromc::sampler::{Config, Sampler};
 
-// sample from Gaussian with µ=0.0 and σ=1.0, in the interval [-5.0, 5.0]
+// sample from the Gaussian with µ=0.0 and σ=1.0, in the interval [-5.0, 5.0]
 let sampler = Sampler::new(Config {
     rand: Wyrand::default(),
     dist: Gaussian::new(0.0, 1.0),
