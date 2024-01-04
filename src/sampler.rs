@@ -47,6 +47,15 @@ impl<R: Rand, P: Pdf> Sampler<R, P> {
     }
 }
 
+impl<R: Rand, P: Pdf> Iterator for Sampler<R, P> {
+    type Item = f64;
+
+    #[inline(always)]
+    fn next(&mut self) -> Option<Self::Item> {
+        Some(self.next())
+    }
+}
+
 #[inline(always)]
 fn random_f64(rand: &mut impl Rand) -> f64 {
     rand.next_u64() as f64 / u64::MAX as f64

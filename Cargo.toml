@@ -2,6 +2,12 @@
 name = "mcmc"
 version = "0.1.0"
 edition = "2021"
+authors = ["Emil Koutanov"]
+license = "MIT"
+description = "Markov chain Monte Carlo sampling using the Independence Metropolis-Hastings algorithm."
+repository = "https://github.com/obsidiandynamics/mcmc"
+keywords = ["random", "sampling", "mcmc"]
+exclude = ["/images", "/bin", "/.idea", "/.github", "/coverage", "/doc", "/examples"]
 
 [dependencies]
 statrs = "0.16.0"

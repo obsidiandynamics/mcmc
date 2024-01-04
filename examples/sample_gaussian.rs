@@ -8,9 +8,8 @@ fn main() {
     const STD_DEV: f64 = 1.0;
     const RANGE: RangeInclusive<f64> = -5.0..=5.0;
     const NUM_BUCKETS: usize = 100;
-    const NUM_SAMPLES: usize = 10_000_000;
 
-    let mut sampler = Sampler::new(Config {
+    let sampler = Sampler::new(Config {
         rand: Wyrand::default(),
         dist: Gaussian::new(MEAN, STD_DEV),
         range: RANGE,
@@ -18,10 +17,9 @@ fn main() {
 
     let mut buckets = [0_usize; NUM_BUCKETS];
     let span = RANGE.end() - RANGE.start();
-    for _ in 0..NUM_SAMPLES {
-        let rand = sampler.next();
+    for sample in sampler.skip(100).take(10_000_000) {
         // println!("{rand:.6}");
-        let bucket = ((rand - RANGE.start()) / span * NUM_BUCKETS as f64) as usize;
+        let bucket = ((sample - RANGE.start()) / span * NUM_BUCKETS as f64) as usize;
         buckets[bucket] += 1;
     }
 
