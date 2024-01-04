@@ -1,6 +1,6 @@
 `metromc`
 ===
-Markov chain Monte Carlo sampling using the _Independence Metropolis-Hastings_ algorithm with uniform transition kernel.
+Markov chain Monte Carlo (MCMC) sampling using the _Independence Metropolis-Hastings_ algorithm with uniform transition kernel.
 
 [![Crates.io](https://img.shields.io/crates/v/metromc?style=flat-square&logo=rust)](https://crates.io/crates/metromc)
 [![docs.rs](https://img.shields.io/badge/docs.rs-metromc-blue?style=flat-square&logo=docs.rs)](https://docs.rs/metromc)
@@ -8,8 +8,17 @@ Markov chain Monte Carlo sampling using the _Independence Metropolis-Hastings_ a
 
 Uses the [tinyrand](https://github.com/obsidiandynamics/tinyrand) RNG to sample at a rate of ~50M samples/sec.
 
+Supports the following distributions:
+
+* [Gaussian/Normal](https://en.wikipedia.org/wiki/Normal_distribution)
+* [Gamma](https://en.wikipedia.org/wiki/Gamma_distribution)
+* [Pareto](https://en.wikipedia.org/wiki/Pareto_distribution)
+* [Beta](https://en.wikipedia.org/wiki/Beta_distribution)
+
+It is easy to add more univariate distributions by supplying an implementation of a PDF or wrapping one from the excellent [statrs](https://crates.io/crates/statrs) crate.
+
 # Example
-Draw samples from the Gaussian distribution.
+Draw samples from the Gaussian distribution using MCMC.
 
 ```rust
 use std::ops::RangeInclusive;
