@@ -1,8 +1,30 @@
 use std::f64::consts::PI;
+use crate::Pdf;
 
-pub fn pdf(mean: f64, stdev: f64, x: f64) -> f64 {
-    let exponent = ((x - mean) / stdev).powi(2) /  -2.0;
-    f64::exp(exponent) / stdev / (2.0 * PI).sqrt()
+pub struct Gaussian {
+    mean: f64,
+    std_dev: f64
+}
+impl Gaussian {
+    #[inline(always)]
+    pub fn new(mean: f64, std_dev: f64) -> Self {
+        Self {
+            mean,
+            std_dev
+        }
+    }
+}
+
+impl Pdf for Gaussian {
+    #[inline(always)]
+    fn prob(&self, x: f64) -> f64 {
+        pdf(self.mean, self.std_dev, x)
+    }
+}
+
+pub fn pdf(mean: f64, std_dev: f64, x: f64) -> f64 {
+    let exponent = ((x - mean) / std_dev).powi(2) /  -2.0;
+    f64::exp(exponent) / std_dev / (2.0 * PI).sqrt()
 }
 
 #[cfg(test)]
@@ -12,9 +34,9 @@ mod tests {
     #[test]
     fn unit_distribution() {
         const MEAN: f64 = 0.0;
-        const STDEV: f64 = 1.0;
+        const STD_DEV: f64 = 1.0;
         fn pdf(x: f64) -> f64 {
-            super::pdf(MEAN, STDEV, x)
+            super::pdf(MEAN, STD_DEV, x)
         }
 
         assert_float_absolute_eq!(0.000001, pdf(-5.0));
@@ -33,9 +55,9 @@ mod tests {
     #[test]
     fn custom_distribution() {
         const MEAN: f64 = 3.0;
-        const STDEV: f64 = 2.0;
+        const STD_DEV: f64 = 2.0;
         fn pdf(x: f64) -> f64 {
-            super::pdf(MEAN, STDEV, x)
+            super::pdf(MEAN, STD_DEV, x)
         }
 
         assert_float_absolute_eq!(0.000436, pdf(-4.0));
